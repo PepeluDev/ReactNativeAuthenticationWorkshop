@@ -1,16 +1,28 @@
+import { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import AuthForm from '../../components/Auth/AuthForm'
 import FlatButton from '../../components/ui/FlatButton'
+import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
 
 const Signup = ({ navigation }) => {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
     function signupHandler(loginInfo) {
-        console.log(JSON.stringify(loginInfo))
+        setIsSubmitting(true)
+        setTimeout(function () {
+            console.log(JSON.stringify(loginInfo))
+            setIsSubmitting(false)
+        }, 3000)
     }
 
     function goToLogInUpHandler() {
         navigation.replace('Login')
+    }
+
+    if (isSubmitting) {
+        return <LoadingOverlay />
     }
 
     return (
