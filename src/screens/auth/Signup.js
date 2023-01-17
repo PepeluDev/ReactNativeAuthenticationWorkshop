@@ -1,11 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+
 import WithImageBackground from '../helpers/WithImageBackground'
+import AuthForm from '../../components/Auth/AuthForm'
 
 const Signup = () => {
+    function signupHandler(loginInfo) {
+        console.log(JSON.stringify(loginInfo))
+    }
+
     return (
         <WithImageBackground>
             <View style={styles.rootContainer}>
-                <Text>This is the SIGNUP screen</Text>
+                <AuthForm isLogin={false} onSubmit={signupHandler} />
             </View>
         </WithImageBackground>
     )
