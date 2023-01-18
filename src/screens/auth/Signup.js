@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
+import WithImageBackground from '../helpers/WithImageBackground'
 
 const Signup = () => {
     return (
-        <View style={styles.rootContainer}>
-            <Text>This is the SIGNUP screen</Text>
-        </View>
+        <WithImageBackground>
+            <View style={styles.rootContainer}>
+                <Text>This is the SIGNUP screen</Text>
+            </View>
+        </WithImageBackground>
     )
 }
 
