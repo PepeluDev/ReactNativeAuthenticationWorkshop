@@ -5,7 +5,7 @@ for a complete authentication workflow in a React Native App.
 
 ## Project Current State
 
-The status of the project at this moment presents the user interface developed with 4 different screens: Login, Register, Confirm_registration and Reset_password. The logic behind and the backend connection are the next thing to do.
+The status of the project at this moment presents the user interface developed with 4 different screens: Login, Register, Confirm_registration and Reset_password. The logic behind and the auth backend connection are a work in progress.
 
 ## App preview
 
@@ -39,6 +39,40 @@ This script will launch the Expo project in a Docker container and if you are in
 [installation]: https://docs.expo.dev/get-started/installation/
 [Dockerfile]: ./Dockerfile
 [Expo Go]: https://docs.expo.dev/get-started/installation/#expo-go-app-for-android-and-ios
+
+## Authentication backend
+
+### Install and configure Amplify
+
+We need to create and enable an amplify user and profile our local machine to be able to provision cloud resources.
+
+```bash
+    npm install -g @aws-amplify/cli
+    amplify configure
+```
+
+For more details follow the [initialization docs].
+
+[initialization docs]: https://docs.amplify.aws/lib/project-setup/prereq/q/platform/react-native/#option-2-follow-the-instructions
+
+### Initialize amplify project
+
+Now we will initialize the amplify project in our repository. Remember to select AWS profile as the authentication method to create cloud resources, and select the previously created.
+
+```bash
+    amplify init
+```
+
+### Environment management
+
+It is also recommendable to understand the environment management.
+
+```bash
+    amplify env list
+    amplify env add
+    amplify env checkout
+    amplify env remove
+```
 
 ## Images property
 
