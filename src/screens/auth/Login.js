@@ -25,12 +25,10 @@ const Login = ({ navigation }) => {
         navigation.replace('ResetPassword')
     }
 
-    if (isSubmitting) {
-        return <LoadingOverlay />
-    }
+    let contentToRender = <LoadingOverlay />
 
-    return (
-        <WithImageBackground>
+    if (!isSubmitting) {
+        contentToRender = (
             <View style={styles.rootContainer}>
                 <AuthForm isLogin={true} onSubmit={loginHandler} />
                 <View style={styles.buttonContainer}>
@@ -42,8 +40,10 @@ const Login = ({ navigation }) => {
                     </FlatButton>
                 </View>
             </View>
-        </WithImageBackground>
-    )
+        )
+    }
+
+    return <WithImageBackground>{contentToRender}</WithImageBackground>
 }
 
 const styles = StyleSheet.create({

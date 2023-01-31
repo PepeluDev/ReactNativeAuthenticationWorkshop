@@ -34,12 +34,10 @@ const ResetPassword = ({ navigation }) => {
         navigation.replace('Login')
     }
 
-    if (isSubmitting) {
-        return <LoadingOverlay />
-    }
+    let contentToRender = <LoadingOverlay />
 
-    return (
-        <WithImageBackground>
+    if (!isSubmitting) {
+        contentToRender = (
             <View style={styles.rootContainer}>
                 <ResetPasswordForm
                     requestWasSent={passwordResetRequestWasSent}
@@ -52,8 +50,10 @@ const ResetPassword = ({ navigation }) => {
                     </FlatButton>
                 </View>
             </View>
-        </WithImageBackground>
-    )
+        )
+    }
+
+    return <WithImageBackground>{contentToRender}</WithImageBackground>
 }
 
 const styles = StyleSheet.create({

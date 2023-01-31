@@ -29,12 +29,10 @@ const ConfirmRegistration = ({ navigation }) => {
         navigation.replace('Login')
     }
 
-    if (isSubmitting) {
-        return <LoadingOverlay />
-    }
+    let contentToRender = <LoadingOverlay />
 
-    return (
-        <WithImageBackground>
+    if (!isSubmitting) {
+        contentToRender = (
             <View style={styles.rootContainer}>
                 <ConfirmRegistrationForm
                     onSubmit={submitConfirmationCodeHandler}
@@ -46,8 +44,10 @@ const ConfirmRegistration = ({ navigation }) => {
                     </FlatButton>
                 </View>
             </View>
-        </WithImageBackground>
-    )
+        )
+    }
+
+    return <WithImageBackground>{contentToRender}</WithImageBackground>
 }
 
 const styles = StyleSheet.create({

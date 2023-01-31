@@ -21,12 +21,10 @@ const Signup = ({ navigation }) => {
         navigation.replace('Login')
     }
 
-    if (isSubmitting) {
-        return <LoadingOverlay />
-    }
+    let contentToRender = <LoadingOverlay />
 
-    return (
-        <WithImageBackground>
+    if (!isSubmitting) {
+        contentToRender = (
             <View style={styles.rootContainer}>
                 <AuthForm isLogin={false} onSubmit={signupHandler} />
                 <View style={styles.buttonContainer}>
@@ -35,8 +33,10 @@ const Signup = ({ navigation }) => {
                     </FlatButton>
                 </View>
             </View>
-        </WithImageBackground>
-    )
+        )
+    }
+
+    return <WithImageBackground>{contentToRender}</WithImageBackground>
 }
 
 const styles = StyleSheet.create({
