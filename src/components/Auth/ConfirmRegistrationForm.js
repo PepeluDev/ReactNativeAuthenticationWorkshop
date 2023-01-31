@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import Button from '../ui/Button'
 import ControlledInput from '../ui/ControlledInput'
-
-const CONFIRMATION_CODE_REGEX = /^[0-9]{6}$/
+import { Regex } from '../../constants/Regex'
 
 const ConfirmRegistrationForm = ({ onSubmit, onResendConfirmationCode }) => {
     const {
@@ -30,7 +29,7 @@ const ConfirmRegistrationForm = ({ onSubmit, onResendConfirmationCode }) => {
                     rules={{
                         required: 'field required',
                         pattern: {
-                            value: CONFIRMATION_CODE_REGEX,
+                            value: Regex.confirmationCode,
                             message: 'Insert a valid code',
                         },
                     }}

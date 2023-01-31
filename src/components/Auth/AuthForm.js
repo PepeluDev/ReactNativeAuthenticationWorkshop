@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form'
 import Button from '../ui/Button'
 import ControlledInput from '../ui/ControlledInput'
 import IconButton from '../ui/IconButton'
+import { Regex } from '../../constants/Regex'
 
-const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 const PASSWORD_SECURE_ICON = 'eye-outline'
 const PASSWORD_NOT_SECURE_ICON = 'eye-off-outline'
 
@@ -35,7 +35,7 @@ const AuthForm = ({ isLogin, onSubmit }) => {
                     rules={{
                         required: 'field required',
                         pattern: {
-                            value: EMAIL_REGEX,
+                            value: Regex.email,
                             message: 'Email Address Invalid',
                         },
                     }}
