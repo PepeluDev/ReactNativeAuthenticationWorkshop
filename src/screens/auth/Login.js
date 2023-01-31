@@ -21,6 +21,10 @@ const Login = ({ navigation }) => {
         navigation.replace('Signup')
     }
 
+    function goToResetPasswordHandler() {
+        navigation.replace('ResetPassword')
+    }
+
     if (isSubmitting) {
         return <LoadingOverlay />
     }
@@ -32,6 +36,9 @@ const Login = ({ navigation }) => {
                 <View style={styles.buttonContainer}>
                     <FlatButton onPress={goToSignUpHandler}>
                         Create a new account
+                    </FlatButton>
+                    <FlatButton onPress={goToResetPasswordHandler}>
+                        Forgot My password
                     </FlatButton>
                 </View>
             </View>
