@@ -6,9 +6,7 @@ import Button from '../ui/Button'
 import ControlledInput from '../ui/ControlledInput'
 import IconButton from '../ui/IconButton'
 import { Regex } from '../../constants/Regex'
-
-const PASSWORD_SECURE_ICON = 'eye-outline'
-const PASSWORD_NOT_SECURE_ICON = 'eye-off-outline'
+import { Icons } from '../../constants/Icons'
 
 const AuthForm = ({ isLogin, onSubmit }) => {
     const [passwordSecure, setPasswordSecure] = useState(true)
@@ -74,8 +72,8 @@ const AuthForm = ({ isLogin, onSubmit }) => {
                     <IconButton
                         icon={
                             passwordSecure
-                                ? PASSWORD_SECURE_ICON
-                                : PASSWORD_NOT_SECURE_ICON
+                                ? Icons.securePasword
+                                : Icons.unsecurePassword
                         }
                         color="black"
                         size={27}
