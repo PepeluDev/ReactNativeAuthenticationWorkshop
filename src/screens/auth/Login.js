@@ -5,6 +5,7 @@ import AuthForm from '../../components/Auth/AuthForm'
 import FlatButton from '../../components/ui/FlatButton'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
+import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
 const Login = ({ navigation }) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -29,7 +30,9 @@ const Login = ({ navigation }) => {
 
     if (!isSubmitting) {
         contentToRender = (
-            <View style={styles.rootContainer}>
+            <WithKeyboardAvoidingView
+                contentContainerStyle={styles.rootContainer}
+            >
                 <AuthForm isLogin={true} onSubmit={loginHandler} />
                 <View style={styles.buttonContainer}>
                     <FlatButton onPress={goToSignUpHandler}>
@@ -39,7 +42,7 @@ const Login = ({ navigation }) => {
                         Forgot My password
                     </FlatButton>
                 </View>
-            </View>
+            </WithKeyboardAvoidingView>
         )
     }
 

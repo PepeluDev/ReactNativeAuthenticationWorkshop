@@ -5,6 +5,7 @@ import AuthForm from '../../components/Auth/AuthForm'
 import FlatButton from '../../components/ui/FlatButton'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
+import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
 const Signup = ({ navigation }) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -25,14 +26,16 @@ const Signup = ({ navigation }) => {
 
     if (!isSubmitting) {
         contentToRender = (
-            <View style={styles.rootContainer}>
+            <WithKeyboardAvoidingView
+                contentContainerStyle={styles.rootContainer}
+            >
                 <AuthForm isLogin={false} onSubmit={signupHandler} />
                 <View style={styles.buttonContainer}>
                     <FlatButton onPress={goToLogInUpHandler}>
                         I already have account, login
                     </FlatButton>
                 </View>
-            </View>
+            </WithKeyboardAvoidingView>
         )
     }
 

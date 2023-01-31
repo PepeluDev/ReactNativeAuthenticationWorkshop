@@ -5,6 +5,7 @@ import FlatButton from '../../components/ui/FlatButton'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import ResetPasswordForm from '../../components/Auth/ResetPasswordForm'
 import WithImageBackground from '../helpers/WithImageBackground'
+import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
 const ResetPassword = ({ navigation }) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -38,7 +39,9 @@ const ResetPassword = ({ navigation }) => {
 
     if (!isSubmitting) {
         contentToRender = (
-            <View style={styles.rootContainer}>
+            <WithKeyboardAvoidingView
+                contentContainerStyle={styles.rootContainer}
+            >
                 <ResetPasswordForm
                     requestWasSent={passwordResetRequestWasSent}
                     onSubmitPasswordResetRequest={submitPasswordResetRequest}
@@ -49,7 +52,7 @@ const ResetPassword = ({ navigation }) => {
                         Back to Login
                     </FlatButton>
                 </View>
-            </View>
+            </WithKeyboardAvoidingView>
         )
     }
 

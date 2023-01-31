@@ -5,6 +5,7 @@ import ConfirmRegistrationForm from '../../components/Auth/ConfirmRegistrationFo
 import FlatButton from '../../components/ui/FlatButton'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
+import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
 const ConfirmRegistration = ({ navigation }) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -33,7 +34,9 @@ const ConfirmRegistration = ({ navigation }) => {
 
     if (!isSubmitting) {
         contentToRender = (
-            <View style={styles.rootContainer}>
+            <WithKeyboardAvoidingView
+                contentContainerStyle={styles.rootContainer}
+            >
                 <ConfirmRegistrationForm
                     onSubmit={submitConfirmationCodeHandler}
                     onResendConfirmationCode={resendConfirmationCodeHandler}
@@ -43,7 +46,7 @@ const ConfirmRegistration = ({ navigation }) => {
                         Back to Login
                     </FlatButton>
                 </View>
-            </View>
+            </WithKeyboardAvoidingView>
         )
     }
 
