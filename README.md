@@ -3,6 +3,10 @@
 The aim of this repository is to gather, with educational purposes, the step by step implementation
 for a complete authentication workflow in a React Native App.
 
+## Project Current State
+
+The status of the project at this moment presents the user interface developed with 4 different screens: Login, Register, Confirm_registration and Reset_password. The logic behind and the backend connection are the next thing to do.
+
 ## App preview
 
 ![app-image](./readme-files/login-screenshot.png)
