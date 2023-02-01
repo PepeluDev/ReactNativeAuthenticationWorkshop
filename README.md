@@ -3,6 +3,10 @@
 The aim of this repository is to gather, with educational purposes, the step by step implementation
 for a complete authentication workflow in a React Native App.
 
+## App preview
+
+![app-image](./readme-files/login-screenshot.png)
+
 ## How to use it
 
 There are two alternatives.
