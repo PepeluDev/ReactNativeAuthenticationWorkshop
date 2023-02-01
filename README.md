@@ -74,9 +74,26 @@ It is also recommendable to understand the environment management.
     amplify env remove
 ```
 
+## Authentication
+
+Run the following command selexcting "Default configuration". We will select "Email" as authentication method. Additional changes enables us to selct more attibutes required to sign-up, but we can modify this later.
+
+```bash
+    amplify add auth
+```
+
+now we will publish changes to the cloud. This can take a few minutes.
+
+```bash
+    amplify push
+```
+
+Now we will have a fully functional cognito user-pool & identity-pool backend for our app.
+
 ## Images property
 
 Images listed below are property of ***[The Ninja Project]*** & ***BBVA 2023***, they kindly allowed its use for this Wokshop to be possible:
+
 * [ninjaLogo]
 * [ninjaBackground]
 
