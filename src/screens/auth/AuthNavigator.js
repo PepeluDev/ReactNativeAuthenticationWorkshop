@@ -24,9 +24,9 @@ const AuthNavigator = ({ screenOptions }) => {
         >
             <AuthStack.Screen name="Login" component={Login} />
             <AuthStack.Screen name="Signup" component={Signup} />
-            <AuthStack.Screen name="ResetPassword" component={ResetPassword} />
+            <AuthStack.Screen name="Reset_Password" component={ResetPassword} />
             <AuthStack.Screen
-                name="ConfirmRegistration"
+                name="Confirm_Registration"
                 component={ConfirmRegistration}
             />
         </AuthStack.Navigator>

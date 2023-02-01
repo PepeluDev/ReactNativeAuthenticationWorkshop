@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 import AuthForm from '../../components/Auth/AuthForm'
 import FlatButton from '../../components/ui/FlatButton'
@@ -7,7 +7,8 @@ import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
 import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation, route }) => {
+    const screenName = route.name
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     function loginHandler(loginInfo) {
@@ -23,7 +24,7 @@ const Login = ({ navigation }) => {
     }
 
     function goToResetPasswordHandler() {
-        navigation.replace('ResetPassword')
+        navigation.replace('Reset_Password')
     }
 
     let contentToRender = <LoadingOverlay />
@@ -33,6 +34,9 @@ const Login = ({ navigation }) => {
             <WithKeyboardAvoidingView
                 contentContainerStyle={styles.rootContainer}
             >
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>{screenName}</Text>
+                </View>
                 <AuthForm isLogin={true} onSubmit={loginHandler} />
                 <View style={styles.buttonContainer}>
                     <FlatButton onPress={goToSignUpHandler}>
@@ -53,6 +57,16 @@ const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
         justifyContent: 'center',
+    },
+    textContainer: {
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    text: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20,
     },
     buttonContainer: {
         marginVertical: 3,

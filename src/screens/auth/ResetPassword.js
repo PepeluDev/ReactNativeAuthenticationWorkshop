@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 import FlatButton from '../../components/ui/FlatButton'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
@@ -7,7 +7,8 @@ import ResetPasswordForm from '../../components/Auth/ResetPasswordForm'
 import WithImageBackground from '../helpers/WithImageBackground'
 import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
-const ResetPassword = ({ navigation }) => {
+const ResetPassword = ({ navigation, route }) => {
+    const screenName = route.name
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [passwordResetRequestWasSent, setPasswordResetRequestWasSent] =
         useState(false)
@@ -42,6 +43,11 @@ const ResetPassword = ({ navigation }) => {
             <WithKeyboardAvoidingView
                 contentContainerStyle={styles.rootContainer}
             >
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>
+                        {screenName.replace('_', ' ')}
+                    </Text>
+                </View>
                 <ResetPasswordForm
                     requestWasSent={passwordResetRequestWasSent}
                     onSubmitPasswordResetRequest={submitPasswordResetRequest}
@@ -63,6 +69,16 @@ const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
         justifyContent: 'center',
+    },
+    textContainer: {
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    text: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20,
     },
     buttonContainer: {
         marginVertical: 3,
