@@ -28,3 +28,11 @@ export async function resendConfirmationCode(username) {
 export async function authenticate(authData) {
     return await Auth.signIn(authData.email, authData.password)
 }
+
+export async function forgotPassword(username) {
+    return await Auth.forgotPassword(username)
+}
+
+export async function forgotPasswordSubmit(username, code, new_password) {
+    return await Auth.forgotPasswordSubmit(username, code, new_password)
+}

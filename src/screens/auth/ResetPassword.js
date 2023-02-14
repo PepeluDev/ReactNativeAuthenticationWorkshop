@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 
 import FlatButton from '../../components/ui/FlatButton'
 import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import ResetPasswordForm from '../../components/Auth/ResetPasswordForm'
 import WithImageBackground from '../helpers/WithImageBackground'
 import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
+
+import { forgotPassword, forgotPasswordSubmit } from '../../util/auth'
 
 const ResetPassword = ({ navigation, route }) => {
     const screenName = route.name
@@ -14,22 +16,39 @@ const ResetPassword = ({ navigation, route }) => {
         useState(false)
     const [email, setEmail] = useState()
 
-    function submitPasswordResetRequest(data) {
+    async function submitPasswordResetRequest(data) {
         setIsSubmitting(true)
-        setTimeout(function () {
-            console.log(JSON.stringify(data))
-            setPasswordResetRequestWasSent(true)
+        try {
+            console.log(data.email)
+            await forgotPassword(data.email)
             setEmail(data.email)
-            setIsSubmitting(false)
-        }, 3000)
+            setPasswordResetRequestWasSent(true)
+        } catch (error) {
+            Alert.alert(
+                'Password reset request failed',
+                'Please check the input email address or try again later'
+            )
+        }
+        setIsSubmitting(false)
     }
 
-    function submitNewPasswordHandler(data) {
+    async function submitNewPasswordHandler(data) {
         setIsSubmitting(true)
-        setTimeout(function () {
-            console.log(JSON.stringify({ ...data, email }))
+        try {
+            await forgotPasswordSubmit(
+                email,
+                data.confirmationCode,
+                data.password
+            )
+            Alert.alert(
+                'Password reset succeeded',
+                'Please login with your new credentials'
+            )
+            goToLogInHandler()
+        } catch (error) {
             setIsSubmitting(false)
-        }, 3000)
+            Alert.alert('Password reset failed', 'Please try again later')
+        }
     }
 
     function goToLogInHandler() {
