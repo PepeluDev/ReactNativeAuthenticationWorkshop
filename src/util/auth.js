@@ -24,3 +24,7 @@ export async function confirmUser(username, confirmationCode) {
 export async function resendConfirmationCode(username) {
     return await Auth.resendSignUp(username)
 }
+
+export async function authenticate(authData) {
+    return await Auth.signIn(authData.email, authData.password)
+}

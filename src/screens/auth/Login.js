@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 
 import AuthForm from '../../components/Auth/AuthForm'
 import FlatButton from '../../components/ui/FlatButton'
@@ -7,16 +7,29 @@ import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
 import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
+import { authenticate } from '../../util/auth'
+
 const Login = ({ navigation, route }) => {
     const screenName = route.name
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    function loginHandler(loginInfo) {
+    async function loginHandler(data) {
         setIsSubmitting(true)
-        setTimeout(function () {
-            console.log(JSON.stringify(loginInfo))
-            setIsSubmitting(false)
-        }, 3000)
+        try {
+            await authenticate({ email: data.email, password: data.password })
+        } catch (error) {
+            if (error.name === 'UserNotConfirmedException') {
+                navigation.navigate('Confirm_Registration', {
+                    emailAddress: data.email,
+                })
+            } else {
+                setIsSubmitting(false)
+                Alert.alert(
+                    'An error ocurred',
+                    'Please check your input or try again later.'
+                )
+            }
+        }
     }
 
     function goToSignUpHandler() {
