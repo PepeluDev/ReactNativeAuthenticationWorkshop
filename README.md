@@ -90,6 +90,14 @@ now we will publish changes to the cloud. This can take a few minutes.
 
 Now we will have a fully functional cognito user-pool & identity-pool backend for our app.
 
+### Connect app to authentication server
+
+After the backend authentication is ready, we can start writting the code to connect our app to it. but first we will need to install the following libraries:
+
+```bash
+npm install aws-amplify amazon-cognito-identity-js @react-native-community/netinfo @react-native-async-storage/async-storage
+```
+
 ## Images property
 
 Images listed below are property of ***[The Ninja Project]*** & ***BBVA 2023***, they kindly allowed its use for this Wokshop to be possible:
