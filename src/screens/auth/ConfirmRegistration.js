@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 
 import ConfirmRegistrationForm from '../../components/Auth/ConfirmRegistrationForm'
 import FlatButton from '../../components/ui/FlatButton'
@@ -7,24 +7,36 @@ import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
 import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
+import { confirmUser, resendConfirmationCode } from '../../util/auth'
+
 const ConfirmRegistration = ({ navigation, route }) => {
     const screenName = route.name
+    const email = route.params.emailAddress
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    function submitConfirmationCodeHandler(confirmationCode) {
+    async function submitConfirmationCodeHandler(confirmationCode) {
         setIsSubmitting(true)
-        setTimeout(function () {
-            console.log('The confirmation code: ' + confirmationCode)
+        try {
+            await confirmUser(email, confirmationCode)
+        } catch (error) {
             setIsSubmitting(false)
-        }, 3000)
+            Alert.alert(
+                'An error ocurred',
+                'Please check your input or try to get the code again.'
+            )
+        }
     }
 
-    function resendConfirmationCodeHandler() {
+    async function resendConfirmationCodeHandler() {
         setIsSubmitting(true)
-        setTimeout(function () {
-            console.log('Confirmation code Resent')
+        try {
+            await resendConfirmationCode(email)
+            Alert.alert('Code Resent')
+        } catch (error) {
             setIsSubmitting(false)
-        }, 3000)
+            Alert.alert('An error ocurred', 'Please try again later.')
+        }
+        setIsSubmitting(false)
     }
 
     function goToLoginHandler() {

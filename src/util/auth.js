@@ -15,3 +15,12 @@ export async function createUser(authData) {
 export async function getCurrentauthenticatedUser() {
     return await Auth.currentAuthenticatedUser({ bypassCache: true })
 }
+
+export async function confirmUser(username, confirmationCode) {
+    // the signin event will be triggered after this confirmation
+    return await Auth.confirmSignUp(username, confirmationCode)
+}
+
+export async function resendConfirmationCode(username) {
+    return await Auth.resendSignUp(username)
+}
