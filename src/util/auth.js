@@ -36,3 +36,7 @@ export async function forgotPassword(username) {
 export async function forgotPasswordSubmit(username, code, new_password) {
     return await Auth.forgotPasswordSubmit(username, code, new_password)
 }
+
+export async function logOut() {
+    return await Auth.signOut()
+}
