@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 
 import AuthForm from '../../components/Auth/AuthForm'
 import FlatButton from '../../components/ui/FlatButton'
@@ -7,16 +7,28 @@ import LoadingOverlay from '../../components/ui/LoadingOverlay'
 import WithImageBackground from '../helpers/WithImageBackground'
 import WithKeyboardAvoidingView from '../helpers/WithKeyboardAvoidingView'
 
+import { createUser } from '../../util/auth'
+
 const Signup = ({ navigation, route }) => {
     const screenName = route.name
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    function signupHandler(loginInfo) {
+    async function signupHandler(data) {
         setIsSubmitting(true)
-        setTimeout(function () {
-            console.log(JSON.stringify(loginInfo))
+        try {
+            await createUser({ email: data.email, password: data.password })
+            navigation.navigate('Confirm_Registration', {
+                emailAddress: data.email,
+            })
+        } catch (error) {
+            let errorAlertMessage =
+                'Please check your input or try again later.'
+            if (error.name === 'UsernameExistsException') {
+                errorAlertMessage = 'User already exists.'
+            }
             setIsSubmitting(false)
-        }, 3000)
+            Alert.alert('An error ocurred', errorAlertMessage)
+        }
     }
 
     function goToLogInUpHandler() {
