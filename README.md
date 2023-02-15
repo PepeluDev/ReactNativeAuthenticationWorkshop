@@ -5,7 +5,7 @@ for a complete authentication workflow in a React Native App.
 
 ## Project Current State
 
-The status of the project at this moment presents the user interface developed with 4 different screens: Login, Register, Confirm_registration and Reset_password. The logic behind and the auth backend connection are a work in progress.
+The status of the project at this moment presents the user interface developed with 4 different screens: Login, Register, Confirm_registration and Reset_password. Apart from the Main Screen, which represents the inner part of the App after the authentication process. The logic behind and the authentication backend connection are also provided. So, the result is a complete authentication flow to secure a React Native App.
 
 ## App preview
 
@@ -97,6 +97,16 @@ After the backend authentication is ready, we can start writting the code to con
 ```bash
 npm install aws-amplify amazon-cognito-identity-js @react-native-community/netinfo @react-native-async-storage/async-storage
 ```
+
+## Next Steps
+
+This project can be used as a baseline to start using and learning about other amplify libraries, such as:
+
+* API (GraphQL/REST)
+* Storage
+* Push Notifications
+
+And others.
 
 ## Images property
 
